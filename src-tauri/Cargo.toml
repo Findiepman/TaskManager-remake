@@ -1,0 +1,53 @@
+[package]
+name = "taskmanager-remake"
+version = "1.0.0"
+description = "A cleaner, more overseeable Windows task manager"
+edition = "2021"
+publish = false
+
+[lib]
+name = "tm_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sysinfo = "0.40"
+parking_lot = "0.12"
+tauri-plugin-single-instance = "2"
+ferrisetw = "1.2"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.55"
+windows = { version = "0.62", features = [
+  "Win32_Foundation",
+  "Win32_Security",
+  "Win32_System_Services",
+  "Win32_System_Threading",
+  "Win32_System_Performance",
+  "Win32_System_ProcessStatus",
+  "Win32_System_Com",
+  "Win32_Security_Authorization",
+  "Win32_System_Registry",
+  "Win32_Storage_FileSystem",
+  "Win32_System_IO",
+  "Win32_System_Ioctl",
+  "Win32_System_LibraryLoader",
+  "Win32_UI_Shell",
+  "Win32_Graphics_Dxgi",
+  "Win32_Graphics_Dxgi_Common",
+  "Win32_Graphics_Gdi",
+  "Wdk_Graphics_Direct3D",
+  "Wdk_Foundation",
+  "Win32_UI_WindowsAndMessaging",
+] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

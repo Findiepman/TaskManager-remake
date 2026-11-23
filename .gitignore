@@ -1,0 +1,10 @@
+node_modules/
+src-tauri/target/
+src-tauri/gen/
+# design mockups contain this PC's paths and app list
+mockups/
+STATUS.md
+*.log
+.vscode/
+.idea/
+src-tauri/resources/pawnio/PawnIO_setup.exe

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Task Manager</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<aside>
+  <div class="brand">Task Manager</div>
+  <button class="nav" data-go="overview"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="lbl">Overview</span></button>
+  <button class="nav" data-go="apps"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span class="lbl">Apps</span><span class="val" id="s-apps"></span></button>
+  <button class="nav" data-go="perf"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 3 4-8 5 7"/></svg><span class="lbl">Performance</span><span class="val" id="s-cpu"></span></button>
+  <button class="nav" data-go="startup"><svg viewBox="0 0 24 24"><path d="M12 3v9"/><path d="M6.5 6.5a8 8 0 1 0 11 0"/></svg><span class="lbl">Startup</span><span class="val" id="s-start"></span></button>
+  <button class="nav" data-go="services"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><span class="lbl">Services</span><span class="val" id="s-svc"></span></button>
+  <button class="nav bottom" data-go="settings"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span class="lbl">Settings</span></button>
+  <div class="side-foot" id="cpu-name"></div>
+</aside>
+
+<main>
+<section id="overview">
+  <div class="head"><div><h1>Overview</h1><div class="sub" id="ov-sub">&nbsp;</div></div></div>
+  <div class="grid4" id="tiles"></div>
+  <div class="grid2">
+    <div class="panel"><h2>Using the most memory</h2><div id="top"></div></div>
+    <div class="panel"><h2>Drives</h2><div id="ov-drives"></div></div>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="head"><div><h1>Apps</h1><div class="sub">Processes are grouped by app. Expand a row to see them.</div></div></div>
+  <div class="tools">
+    <input class="search" id="q" type="search" placeholder="Search apps" aria-label="Search apps" spellcheck="false">
+    <div class="seg" id="sort" role="group" aria-label="Sort by">
+      <button data-k="mem">Memory</button><button data-k="cpu">CPU</button><button data-k="gpu">GPU</button><button data-k="disk">Disk</button><button data-k="net">Network</button>
+    </div>
+  </div>
+  <div class="apps">
+    <div class="table" id="tbl"><div class="loading">Reading processes…</div></div>
+    <div class="panel detail" id="detail"></div>
+  </div>
+</section>
+
+<section id="perf">
+  <div class="head"><div><h1>Performance</h1><div class="sub">Live, last 60 seconds</div></div></div>
+  <div class="pgrid" id="pbody"></div>
+</section>
+
+<section id="startup">
+  <div class="head"><div><h1>Startup</h1><div class="sub">Apps that open when you sign in to Windows.</div></div></div>
+  <div class="table" id="stbl"><div class="loading">Reading startup apps…</div></div>
+</section>
+
+<section id="services">
+  <div class="head"><div><h1>Services</h1><div class="sub">Background programs Windows and apps rely on.</div></div></div>
+  <div class="tools"><input class="search" id="sq" type="search" placeholder="Search services" aria-label="Search services" spellcheck="false"></div>
+  <div class="table" id="vtbl"><div class="loading">Reading services…</div></div>
+</section>
+
+<section id="settings">
+  <div class="head"><div><h1>Settings</h1></div></div>
+  <div class="table" id="settbl"></div>
+</section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
